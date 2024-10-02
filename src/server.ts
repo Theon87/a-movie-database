@@ -1,14 +1,14 @@
 // DEPENDENCIES 
 import express from 'express';
-// import { QueryResult } from 'pg';
+import { QueryResult } from 'pg';
 
 
 // INTERFACES
 
 
 // DATA
-// import { pool, connectToDb } from './connections.js';
-// await connectToDb();
+import { pool, connectToDb } from './connections.js';
+await connectToDb();
 
 
 // APP/PORT
@@ -24,8 +24,15 @@ app.use(express.json());
 
 // GET /api/movies - list of all the movies
 app.get("/api/movies", (_req, res) => {
-    res.json({message: "a list of all the movies"})
+    pool.query("SELECT * FROM movies", (err: Error, result: QueryResult) => {
+        if(err){
+            console.log(err);
+            res.status(500).json("something went wrong");
+        }
+        res.json(result.rows);
+    })    
 });
+
 // GET /api/movie-reviews renders a list of all reviews with movie data.
 app.get("/api/movie-reviews", (_req, res) => {
     res.json({message: "a list of all the reviews with movie data"})

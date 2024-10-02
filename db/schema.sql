@@ -15,4 +15,4 @@ CREATE TABLE reviews (
   FOREIGN KEY (movie_id)
   REFERENCES movies(id)
   ON DELETE SET NULL
-);
+); 
