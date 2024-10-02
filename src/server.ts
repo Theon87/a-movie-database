@@ -30,9 +30,10 @@ const app = express();
 
 // Default response for any other request (Not Found)
 
-// app.use((_req, res) => {
-//     res.status(404).send("nothing found here");
-// });
+app.use((_req, res) => {
+    res.status(404).send("nothing found here");
+    console.log("working!");
+});
 
 // START THE SERVER
 app.listen(PORT, () => {

@@ -19,9 +19,10 @@ const app = express();
 // })
 // Query database
 // Default response for any other request (Not Found)
-// app.use((_req, res) => {
-//     res.status(404).send("nothing found here");
-// });
+app.use((_req, res) => {
+    res.status(404).send("nothing found here");
+    console.log("working!");
+});
 // START THE SERVER
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
