@@ -11,3 +11,5 @@ ON movies.id = reviews.movie_id;
 -- get all movies
 SELECT * FROM movies;
 
+-- add a movie
+-- INSERT INTO movies (movie_name) VALUES ('');

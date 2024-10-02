@@ -40,6 +40,7 @@ app.get("/api/movie-reviews", (_req, res) => {
 
 // POST /api/add-movie adds a movie when tested using Insomnia.
 app.post("/api/add-movie", (_req, res) => {
+    pool.query("")
     res.json({message: "a movie was added!"})
 });
 
