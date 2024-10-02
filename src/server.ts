@@ -17,20 +17,34 @@ const app = express();
 
 // MIDDLEWARE
 // Express middleware
-// app.use(express.urlencoded({ extended: false }));
-// app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
 // ROUTES
+
 // GET /api/movies - list of all the movies
-// app.get("/api/movies", (req, res) => {
-//     res.json("a list of all the movies")
-// })
+app.get("/api/movies", (_req, res) => {
+    res.json({message: "a list of all the movies"})
+});
+// GET /api/movie-reviews renders a list of all reviews with movie data.
+app.get("/api/movie-reviews", (_req, res) => {
+    res.json({message: "a list of all the reviews with movie data"})
+});
+
+// POST /api/add-movie adds a movie when tested using Insomnia.
+app.post("/api/add-movie", (_req, res) => {
+    res.json({message: "a movie was added!"})
+});
+
+// DELETE /api/movie/:id deletes a route when tested using Insomnia.
+app.delete("/api/movie/:id", (_req, res) => {
+    res.json({message: "a movie was deleted!"})
+});
 
 // Query database
 
 // Default response for any other request (Not Found)
-
-app.use((_req, res) => {
+app.use("*",(_req, res) => {
     res.status(404).send("nothing found here");
     console.log("working!");
 });
