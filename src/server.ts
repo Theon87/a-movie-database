@@ -35,12 +35,34 @@ app.get("/api/movies", (_req, res) => {
 
 // GET /api/movie-reviews renders a list of all reviews with movie data.
 app.get("/api/movie-reviews", (_req, res) => {
-    res.json({message: "a list of all the reviews with movie data"})
+    pool.query(`INSERT INTO movies (movie_name) VALUES ('Forrest Gump') WHERE id = $1`, (err: Error, result: QueryResult) => {
+        if(err){
+            console.log(err);
+            res.status(500).json("something went wrong");
+        }
+        res.json(result.rows);
+    })
+    
 });
 
 // POST /api/add-movie adds a movie when tested using Insomnia.
-app.post("/api/add-movie", (_req, res) => {
-    pool.query("")
+app.post("/api/add-movie", (req, res) => {
+    const sql = `INSERT INTO movies (movie_name) VALUES ($1)`;
+    console.log(sql);
+    const params = [req.body.movie_name];
+    // const movie = [_req.body];
+    // console.log(movie);
+
+    pool.query(sql, params, (err, _result) => {
+        if (err) {
+            res.status(400).json({error: err.message});
+            return;
+        }
+        res.json({
+            message: 'success',
+            data: req.body,
+        });
+    })
     res.json({message: "a movie was added!"})
 });
 

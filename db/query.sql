@@ -12,4 +12,4 @@ ON movies.id = reviews.movie_id;
 SELECT * FROM movies;
 
 -- add a movie
--- INSERT INTO movies (movie_name) VALUES ('');
+INSERT INTO movies (movie_name) VALUES ('Forrest Gump');  
